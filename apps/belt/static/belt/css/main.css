@@ -1,0 +1,38 @@
+#Quotes {
+    display: inline-block;
+    margin-left: 30px;
+    border: 2px solid black;
+}
+#Favorites {
+    display: inline-block;
+    margin-right: 30px;
+    vertical-align: top;
+    float: right;
+    border: 2px solid black;
+}
+#quotesheader {
+    border-bottom: 1px solid black;
+    padding: 15px;
+    margin-bottom: 10px;
+
+}
+#quotesheader a {
+    display: inline-block;
+    float: right;
+}
+
+#quotesheader h1 {
+    display: inline-block;
+}
+
+#add {
+    width: 300px;
+    margin: 20px 0px 0px 50px;
+    border: 1px solid black;
+}
+#add form {
+    display: inline-block;
+}
+#error {
+    display: inline-block;
+}

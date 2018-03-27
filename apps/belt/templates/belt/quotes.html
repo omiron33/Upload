@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Quotes</title>
+    {% load static %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'belt/css/bootstrap.min.css' %}" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="{% static 'belt/css/main.css' %}" media="screen" title="no title" charset="utf-8">
+
+</head>
+<body>
+    <div id="quotesheader">
+    <h1>Welcome, {{ user.name }}</h1>
+    <a href="/logout">Logout</a>
+    </div>
+    <div>
+        <div id="Quotes">
+            <h1>Quotable Quotes</h1>
+            {% for quote in quotes %}
+            <p>{{quote.author}}: {{quote.quote}}</p>
+            <p class="by">Posted by <a href="/users/{{quote.poster.id}}">{{quote.poster.name}}</a></p>
+            <form action="/fave/{{quote.id}}" method="post">
+                {% csrf_token %}
+                <input type="submit" name="submit" value="Add to My List">
+            </form>
+            {% endfor %}
+        </div>
+        <div id="Favorites">
+            <h1>Your Favorites</h1>
+            {% for favorite in favorites %}
+            <p>{{favorite.author}}: {{favorite.quote}}</p>
+            <p class="by">Posted by
+                <a href="/users/{{favorite.poster.id}}">{{favorite.poster.name}}</a>
+            </p>
+            <form action="/unfave/{{favorite.id}}" method="post">
+                {% csrf_token %}
+                <input type="submit" name="submit" value="Remove from my List">
+            </form>
+            {% endfor %}
+        </div>
+    </div>
+
+     
+
+    <div id="add">
+        <div id="error">
+         {% if messages %} {% for message in messages %}
+        <p>{{message}}</p>
+        {% endfor %} {% endif %}
+        </div>
+        <form action="/add" method="post">
+            {% csrf_token %}
+            <h4>Contribute a Quote:</h4>
+            <label for="author">Quoted By:</label>
+            <input type="text" name="author">
+            <label for="message">Message:</label>
+            <textarea name="message" id="message" cols="30" rows="10"></textarea>
+            <input type="submit" name="submit" value="Submit">
+        </form>
+        
+    </div>
+
+    
+</body>
+</html>

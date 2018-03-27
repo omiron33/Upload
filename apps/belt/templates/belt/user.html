@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Quotes</title>
+    {% load static %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'travel/css/bootstrap.min.css' %}" media="screen" title="no title" charset="utf-8">
+
+</head>
+
+<body>
+    <a href="/quotes">Dashboard</a>
+    <a href="/logout">Logout</a>
+    <div>
+        <h1>Posts by {{ name }}</h1>
+        <h2>Count: {{count}}</h2>
+        {% for quote in user %}
+        <p>{{quote.author}}: {{quote.quote}}</p>
+        
+        {% endfor %}
+    </div>
+</body>
+
+</html>
